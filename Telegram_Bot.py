@@ -62,6 +62,8 @@ def send_messages():
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{System_error}")
 
 
+import requests
+
 def send_Images():
     
     try:
@@ -70,15 +72,13 @@ def send_Images():
 
         base_URL = "https://api.telegram.org/bot5007843462:AAHevzlKWR08mKDZPZcUV_fISz1ySO3FkQE/sendPhoto"
 
-        path = str(input("enter the path of IMG: "))
+        path = str(input("enter the URL: "))
 
-        parameters = {"chat_id": "-1001615360166", "caption":""}
-
-        files = { "photo": path }
+        parameters = {"chat_id": "-1001615360166", "caption":"","photo": path }
 
         parameters["caption"] = input("write caption: ")
 
-        data = requests.get(base_URL, data=parameters, files=files)
+        data = requests.get(base_URL, data=parameters)
 
         main = str(data)
 
@@ -91,6 +91,7 @@ def send_Images():
     
     except Exception as System_error:
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{System_error}")
+
 
 
 def send_audio():
@@ -125,4 +126,72 @@ def send_audio():
     except Exception as System_error:
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{System_error}")
 
-send_Images()
+
+
+def send_videos():
+
+    try:
+
+        print("\npost code = 1 ( positive )\n")
+
+        base_URL = "https://api.telegram.org/bot5007843462:AAHevzlKWR08mKDZPZcUV_fISz1ySO3FkQE/sendVideo"
+
+        path = str(input("enter the path of vidio file: "))
+
+        vidio_file = open(path, mode='rb')
+
+        parameters = {"chat_id": "-1001615360166", "caption":""}
+
+        files = { "video": vidio_file }
+
+        parameters["caption"] = input("caption of video: ")
+
+        data = requests.get(base_URL, data=parameters, files=files)
+
+        main = str(data)
+
+        if main == "<Response [200]>" :
+    
+            print("\nsend successfully")
+
+        else:
+            print("\ncannot send")
+    
+    except Exception as System_error:
+        print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{System_error}")
+
+
+
+def send_documents():
+
+    try:
+
+        print("\npost code = 1 ( positive )\n")
+
+        base_URL = "https://api.telegram.org/bot5007843462:AAHevzlKWR08mKDZPZcUV_fISz1ySO3FkQE/sendDocument"
+
+        path = str(input("enter the path Document file: "))
+
+        Document_file = open(path, mode='rb')
+
+        parameters = {"chat_id": "-1001615360166", "caption":""}
+
+        files = { "document": Document_file }
+
+        parameters["caption"] = input("\ncaption of Document: ")
+
+        data = requests.get(base_URL, data=parameters, files=files)
+
+        main = str(data)
+
+        if main == "<Response [200]>" :
+    
+            print("\nsend successfully")
+
+        else:
+            print("\ncannot send")
+    
+    except Exception as System_error:
+        print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{System_error}")
+
+send_videos()
