@@ -6,12 +6,13 @@ def bot_info():
     """provide the all imformation about the BOT"""
 
     try:
+        print("\npost code = 1 ( positive )\n")
 
         data = requests.get(
             "https://api.telegram.org/bot5007843462:AAHevzlKWR08mKDZPZcUV_fISz1ySO3FkQE/getme"
         )
 
-        print(data.text)  # useing the "text" attirbute for reading the JSON data
+        print(f"DATA\n\n{data.text}")  # useing the "text" attirbute for reading the JSON data
 
     except Exception as system_error:
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{system_error}")
@@ -32,7 +33,6 @@ def all_converstion():
     except Exception as system_error:
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{system_error}")
 
-import requests 
 
 
 def send_messages():
@@ -62,7 +62,7 @@ def send_messages():
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{System_error}")
 
 
-import requests
+
 
 def send_Images():
     
@@ -110,7 +110,7 @@ def send_audio():
 
         files = { "audio": audio_file }
 
-        parameters["track"] = input("title of track: ")
+        parameters["track"] = input("\ntitle of track: ")
 
         data = requests.get(base_URL, data=parameters, files=files)
 
@@ -136,15 +136,15 @@ def send_videos():
 
         base_URL = "https://api.telegram.org/bot5007843462:AAHevzlKWR08mKDZPZcUV_fISz1ySO3FkQE/sendVideo"
 
-        path = str(input("enter the path of vidio file: "))
+        path = str(input("enter the path of Video file: "))
 
-        vidio_file = open(path, mode='rb')
+        Video_file = open(path, mode='rb')
 
         parameters = {"chat_id": "-1001615360166", "caption":""}
 
-        files = { "video": vidio_file }
+        files = { "video": Video_file }
 
-        parameters["caption"] = input("caption of video: ")
+        parameters["caption"] = input("\ncaption of video: ")
 
         data = requests.get(base_URL, data=parameters, files=files)
 
@@ -194,4 +194,29 @@ def send_documents():
     except Exception as System_error:
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{System_error}")
 
-send_videos()
+
+
+def main():
+
+    print("\n\t\t\t\t\twelcome to the Python BOT\n")
+
+    user = input(f"want to see the BOT info press 1:\n\nwant to see the ALL conversion press 2:\n\nFOR sending meassage press 3\n\nFOR sending Images press 4\n\nFOR sending videos press 5\n\nFOR sending Documents press 6\n\nOption :")
+
+    if user == "1":
+        bot_info()
+        user2 = input("\nDo you want BOT again Y \ N: ")
+        if user2 == "Y" and "y":
+            main()
+        else:
+            quit()
+   
+    else:
+        print("\nOut of range PLZ choose again:\n")
+        main()
+        
+        
+
+main()
+      
+
+
