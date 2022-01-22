@@ -23,12 +23,13 @@ def all_converstion():
     """providing every information bot intract with"""
 
     try:
+        print("\npost code = 1 ( positive )\n")
 
         data = requests.get(
             "https://api.telegram.org/bot5007843462:AAHevzlKWR08mKDZPZcUV_fISz1ySO3FkQE/getupdates"
         )
 
-        print(data.text)  # useing the "text" attirbute for reading the JSON data
+        print(f"DATA\n\n{data.text}")  # useing the "text" attirbute for reading the JSON data
 
     except Exception as system_error:
         print(f"\nplz connect to the internet\n\nsystem error ==>\n\n{system_error}")
@@ -204,12 +205,22 @@ def main():
 
     if user == "1":
         bot_info()
-        user2 = input("\nDo you want BOT again Y \ N: ")
-        if user2 == "Y" and "y":
-            main()
-        else:
-            quit()
-   
+        main()
+    elif user == "2":
+        all_converstion()
+        main()
+    elif user == "3":
+        send_messages()
+        main()
+    elif user == "4":
+        send_Images()
+        main()
+    elif user == "5":
+        send_videos()
+        main()
+    elif user == "6":
+        send_documents()
+        main()   
     else:
         print("\nOut of range PLZ choose again:\n")
         main()
